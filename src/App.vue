@@ -28,7 +28,6 @@
 <script>
     import AccordionMenu from './AccordionMenu';
     require('./page.css');
-    // Ania TODO Add expandable prop: bool to sections //
 
 export default {
   name: 'app',
