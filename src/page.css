@@ -53,7 +53,7 @@ header {
     color: #50a1ff
 }
 
-.faq {
+.section {
     display: block;
     width: 100%;
     max-width: 768px;
@@ -64,14 +64,14 @@ header {
     background-color: #50a1ff;
 }
 
-    .faq .question {
+    .section .header {
         position: relative;
         color: #ffffff;
         font-size: 16px;
         transition: all 0.4s linear;
     }
 
-        .faq .question::after {
+        .section .header::after {
             content: '';
             position: absolute;
             top: 50%;
@@ -86,15 +86,15 @@ header {
             transition: all 0.2s linear;
         }
 
-    .faq.open .question {
+    .section.open .header {
         margin-bottom: 15px;
     }
 
-        .faq.open .question::after {
+        .section.open .header::after {
             transform: translateY(-50%) rotate(90deg);
         }
 
-    .faq .answer {
+    .section .content {
         color: #ffffff;
         font-size: 12px;
         opacity: 0;
@@ -103,7 +103,7 @@ header {
         transition: all 0.4s ease-out;
     }
 
-    .faq.open .answer {
+    .section.open .content {
         opacity: 1;
         max-height: 1000px;
     }

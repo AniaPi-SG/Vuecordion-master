@@ -3,15 +3,15 @@
 	  <header>
 		  <h1>Onboarding Wizard</h1>
 	  </header>
-      <div class="faqs">
+      <div>
           <table class="table">
               <tr>
                   <td><!-- ANIA TODO: move this to css -->
-                      <AccordionMenu v-for="(faq, i) in sections"
-                                     :faq="faq"
+                      <AccordionMenu v-for="(section, i) in sections"
+                                     :section="section"
                                      :index="i"
                                      :key="i"
-                                     :open="faq.open"
+                                     :open="section.open"
                                      @toggleOpen="toggleOpen" />
                   </td>
                   <td>
@@ -39,19 +39,19 @@ export default {
     return {
       sections: [
         {
-          header: "Start Application",
-          content: "Content1",
-          open: true
+            header: "Start Application",
+            content: "Content1",
+            open: true
         },
         {
-          header: "Primary Contact",
-          content: "Content2",
-          open: false
+            header: "Primary Contact",
+            content: "Content2",
+            open: false
         },
         {
-          header: "Trust / Superannuation Fund Information",
-          content: "Content3",
-          open: false
+            header: "Trust / Superannuation Fund Information",
+            content: "Content3",
+            open: false
         },
         {
             header: "Trustee Details",
@@ -98,14 +98,14 @@ export default {
   },
   methods: {
     toggleOpen: function (index) {
-      this.sections = this.sections.map((faq, i) => {
+      this.sections = this.sections.map((section, i) => {
         if (index === i) {
-          faq.open = !faq.open;
+            section.open = !section.open;
         } else {
-          faq.open = false;
+            section.open = false;
         }
 
-        return faq;
+          return section;
       });
     }
   }
