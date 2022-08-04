@@ -1,13 +1,13 @@
 <template>
 	<div :class="open ? 'faq open' : 'faq'" @click="$emit('toggleOpen', index)">
-		<div class="question">{{ faq.question }}</div>
-		<div class="answer">{{ faq.answer }}</div>
+		<div class="question">{{ faq.header }}</div>
+		<div class="answer">{{ faq.content }}</div>
 	</div>
 </template>
 
 <script>
 export default {
-	name: 'FAQ',
+	name: 'AccordionMenu',
 	props: ['faq', 'index', 'open']
 }
 </script>

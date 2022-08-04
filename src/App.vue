@@ -1,53 +1,104 @@
 <template>
   <div id="app">
 	  <header>
-		  <h1>VUE<span>CORDION</span></h1>
+		  <h1>Onboarding Wizard</h1>
 	  </header>
-    <div class="faqs">
-      <FAQ 
-        v-for="(faq, i) in faqs" 
-        :faq="faq" 
-        :index="i" 
-        :key="i"
-        :open="faq.open"
-        @toggleOpen="toggleOpen"
-      />
-    </div>
+      <div class="faqs">
+          <table class="table">
+              <tr>
+                  <td><!-- ANIA TODO: move this to css -->
+                      <AccordionMenu v-for="(faq, i) in sections"
+                                     :faq="faq"
+                                     :index="i"
+                                     :key="i"
+                                     :open="faq.open"
+                                     @toggleOpen="toggleOpen" />
+                  </td>
+                  <td>
+                      <div class="container">
+                          Main Content
+                      </div>
+                  </td>
+              </tr>
+          </table>
+      </div>
   </div>
 </template>
 
 <script>
-import FAQ from './FAQ';
+    import AccordionMenu from './AccordionMenu';
+    require('./page.css');
+    // Ania TODO Add expandable prop: bool to sections //
 
 export default {
   name: 'app',
   components: {
-    FAQ
+      AccordionMenu
   },
   data () {
     return {
-      faqs: [
+      sections: [
         {
-          question: "Who is the best Superhero?",
-          answer: "I'm not sure but we love him 3000",
+          header: "Start Application",
+          content: "Content1",
+          open: true
+        },
+        {
+          header: "Primary Contact",
+          content: "Content2",
           open: false
         },
         {
-          question: "What is Goku's form called with White Hair?",
-          answer: "Mastered Ultra Instinct",
+          header: "Trust / Superannuation Fund Information",
+          content: "Content3",
           open: false
         },
         {
-          question: "Have you liked & subscried yet?",
-          answer: "YES",
-          open: false
+            header: "Trustee Details",
+            content: "Content4",
+            open: false
+        },
+        {
+            header: "Beneficiaries",
+            content: "Content5",
+            open: false
+        },
+        {
+            header: "Beneficial Owner(s)",
+            content: "Content6",
+            open: false
+        },
+        {
+            header: "Investment Details",
+            content: "Content7",
+            open: false
+        },
+        {
+            header: "CRS & FATCA",
+            content: "Content8",
+            open: false
+        },
+        {
+            header: "Declarations",
+            content: "Content9",
+            open: false
+        },
+        {
+            header: "Supporting Documents",
+            content: "Content10",
+            open: false
+        },
+        {
+            header: "Review and Submit",
+            content: "Content11",
+            open: false
         }
       ]
     }
   },
   methods: {
     toggleOpen: function (index) {
-      this.faqs = this.faqs.map((faq, i) => {
+      this.sections = this.sections.map((faq, i) => {
         if (index === i) {
           faq.open = !faq.open;
         } else {
@@ -60,90 +111,3 @@ export default {
   }
 }
 </script>
-
-<style>
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
-body {
-	background-color: #EEE;
-	font-family: sans-serif;
-}
-
-header {
-  background-color: #3c3c3c;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 15px;
-}
-
-header h1 {
-  color: #EEE;
-  font-size: 28px;
-  font-weight: 300;
-  text-transform: uppercase;
-}
-
-header h1 span {
-  color: #56E3B8;
-  font-weight: 900;
-}
-
-.faq {
-  display: block;
-  width: 100%;
-  max-width: 768px;
-  margin: 15px auto;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  background-color: #FFF;
-}
-
-.faq .question {
-  position: relative;
-  color: #3c3c3c;
-  font-size: 20px;
-  transition: all 0.4s linear;
-}
-
-.faq .question::after {
-  content: '';
-
-  position: absolute;
-  top: 50%;
-  right: 0px;
-  transform: translateY(-50%) rotate(0deg);
-
-  width: 30px;
-  height: 30px;
-  background-image: url('./arrow-down-mint.svg');
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  
-  transition: all 0.2s linear;
-}
-.faq.open .question {
-  margin-bottom: 15px;
-}
-.faq.open .question::after {
-  transform: translateY(-50%) rotate(90deg);
-}
-.faq .answer {
-  color: #3c3c3c;
-  font-size: 18px;
-  opacity: 0;
-  max-height: 0px;
-  overflow-y: hidden;
-  transition: all 0.4s ease-out;
-}
-.faq.open .answer {
-  opacity: 1;
-  max-height: 1000px;
-}
-</style>
